@@ -32,7 +32,7 @@ def consolesigninfailure():
 
 def consolesigninfailurealarm():
     print("Creating alarm for the metric filter to check for console sign-in failures")
-    os.system("aws cloudwatch put-metric-alarm --alarm-name 'console_sign_in_failures_alarm' --metric-name 'console_sign_in_failures_metric' --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --namespace 'CISBenchmark' --alarm-actions '" + snsarn + "' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws cloudwatch put-metric-alarm --alarm-name 'console_signin_failure_metric'' --metric-name 'console_signin_failure_metric'' --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --namespace 'CISBenchmark' --alarm-actions '" + snsarn + "' --profile " + profile + " --region " + region + " --output text")
 
 def disableordeletecmk():
     print("Creating metric filter to check for disabling or deleting customer created CMKs")
