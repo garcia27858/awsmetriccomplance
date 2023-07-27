@@ -32,7 +32,7 @@ def consolesigninfailure():
 
 def consolesigninfailurealarm():
     print("Creating alarm for the metric filter to check for console sign-in failures")
-    os.system("aws cloudwatch put-metric-alarm --alarm-name 'console_signin_failure_metric'' --metric-name 'console_signin_failure_metric'' --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --namespace 'CISBenchmark' --alarm-actions '" + snsarn + "' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws cloudwatch put-metric-alarm --alarm-name 'console_signin_failure_metric' --metric-name 'console_signin_failure_metric' --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --namespace 'CISBenchmark' --alarm-actions '" + snsarn + "' --profile " + profile + " --region " + region + " --output text")
 
 def disableordeletecmk():
     print("Creating metric filter to check for disabling or deleting customer created CMKs")
@@ -157,9 +157,9 @@ else:
     print("Using " + region + " region")
 
 #Ask the user what their sns_topic_arn is.
-snsarn = input("Please specify the sns topic arn where the cloud trail log group exist: (example: arn:aws:sns:us-west-2:806758022664:NotifyMe))")
-if snsarn == "arn:aws:sns:us-west-2:806758022664:NotifyMe":
-    print("Using arn:aws:sns:us-west-2:806758022664:NotifyMe")
+snsarn = input("Please specify the sns topic arn where the cloud trail log group exist: (example: arn:aws:sns:us-east-1:1111111111:alarm))")
+if snsarn == "arn:aws:sns:us-east-1:1111111111:alarm":
+    print("Using arn:aws:sns:us-east-1:1111111111:alarm")
 else:
     print("Using " + snsarn + " sns topic arn")
 
