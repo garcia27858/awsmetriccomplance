@@ -28,7 +28,7 @@ def cloudtrailconfigchangesalarm():
 
 def consolesigninfailure():
     print("Creating metric filter to check for console sign-in failures")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'console_sign_in_failures_metric' --metric-transformations metricName='console_sign_in_failures_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name 'console_signin_failure_metric' --metric-transformations metricName='console_signin_failure_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = ConsoleLogin) && ($.errorMessage = 'Failed authentication') }' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'console_signin_failure_metric' --metric-transformations metricName='console_signin_failure_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = ConsoleLogin) && ($.errorMessage = \"Failed authentication\") }' --profile " + profile + " --region " + region + " --output text")
 
 def consolesigninfailurealarm():
     print("Creating alarm for the metric filter to check for console sign-in failures")
@@ -36,7 +36,7 @@ def consolesigninfailurealarm():
 
 def disableordeletecmk():
     print("Creating metric filter to check for disabling or deleting customer created CMKs")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'disable_or_delete_cmk_metric' --metric-transformations metricName='disable_or_delete_cmk_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name idisable_or_delete_cmk_changes_metric' --metric-transformations metricName='disable_or_delete_cmk_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{($.eventSource = kms.amazonaws.com) && (($.eventName=DisableKey)||($.eventName=ScheduleKeyDeletion)) }' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'disable_or_delete_cmk_metric' --metric-transformations metricName='disable_or_delete_cmk_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{($.eventSource = kms.amazonaws.com) && (($.eventName=DisableKey)||($.eventName=ScheduleKeyDeletion)) }' --profile " + profile + " --region " + region + " --output text")
 
 def disableordeletecmkalarm():
     print("Creating alarm for the metric filter to check for disabling or deleting customer created CMKs")
@@ -44,7 +44,7 @@ def disableordeletecmkalarm():
 
 def iamchanges():
     print("Creating metric filter to check for IAM policy changes")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "'--filter-name 'iam_changes_metric' --metric-transformations metricName='iam_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'iam_changes_metric' --metric-transformations metricName='iam_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}' --profile " + profile + " --region " + region + " --output text")
 
 def iamchangesalarm():
     print("Creating alarm for the metric filter to check for IAM policy changes")
@@ -52,7 +52,7 @@ def iamchangesalarm():
 
 def naclchanges():
     print("Creating metric filter to check for network access control list (NACL) changes")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'nacl_changes_metric' --metric-transformations metricName='nacl_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name 'nacl_changes_metric' --metric-transformations metricName='nacl_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }'' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'nacl_changes_metric' --metric-transformations metricName='nacl_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }' --profile " + profile + " --region " + region + " --output text")
 
 def naclchangesalarm():
     print("Creating alarm for the metric filter to check for network access control list (NACL) changes")
@@ -60,7 +60,7 @@ def naclchangesalarm():
 
 def networkgwchanges():
     print("Creating metric filter to check for network gateway changes")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'network_gw_changes_metric' --metric-transformations metricName='network_gw_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name 'network_gw_changes_metric' --metric-transformations metricName='network_gw_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = CreateCustomerGateway) || ($.eventName = DeleteCustomerGateway) || ($.eventName = AttachInternetGateway) || ($.eventName = CreateInternetGateway) || ($.eventName = DeleteInternetGateway) || ($.eventName = DetachInternetGateway) }' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'network_gw_changes_metric' --metric-transformations metricName='network_gw_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = CreateCustomerGateway) || ($.eventName = DeleteCustomerGateway) || ($.eventName = AttachInternetGateway) || ($.eventName = CreateInternetGateway) || ($.eventName = DeleteInternetGateway) || ($.eventName = DetachInternetGateway) }' --profile " + profile + " --region " + region + " --output text")
 
 def networkgwchangesalarm():
     print("Creating alarm for the metric filter to check for network gateway changes")
@@ -68,7 +68,7 @@ def networkgwchangesalarm():
 
 def nomfaconsolesignin():
     print("Creating metric filter to check for non-MFA console sign-in events")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'nomfa_console_signin_metric' --metric-transformations metricName='nomfa_console_signin_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name 'nomfa_console_signin_metric' --metric-transformations metricName='nomfa_console_signin_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = 'ConsoleLogin') && ($.additionalEventData.MFAUsed != 'Yes') && ($.userIdentity.type = 'IAMUser') && ($.responseElements.ConsoleLogin = 'Success') }' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'nomfa_console_signin_metric' --metric-transformations metricName='nomfa_console_signin_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = 'ConsoleLogin') && ($.additionalEventData.MFAUsed != 'Yes') && ($.userIdentity.type = 'IAMUser') && ($.responseElements.ConsoleLogin = 'Success') }' --profile " + profile + " --region " + region + " --output text")
 
 def nomfaconsolesignalarm():
     print("Creating alarm for the metric filter to check for non-MFA console sign-in events")
@@ -76,7 +76,7 @@ def nomfaconsolesignalarm():
 
 def orgchanges():
     print("Creating metric filter to check for AWS organization changes")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'org_changes_metric' --metric-transformations metricName='org_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name 'org_changes_metric' --metric-transformations metricName='org_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventSource = organizations.amazonaws.com) && (($.eventName = 'AcceptHandshake') || ($.eventName = 'AttachPolicy') || ($.eventName = 'CreateAccount') || ($.eventName = 'CreateOrganizationalUnit') || ($.eventName = 'CreatePolicy') || ($.eventName = 'DeclineHandshake') || ($.eventName = 'DeleteOrganization') || ($.eventName = 'DeleteOrganizationalUnit') || ($.eventName = 'DeletePolicy') || ($.eventName = 'DetachPolicy') || ($.eventName = 'DisablePolicyType') || ($.eventName = 'EnablePolicyType') || ($.eventName = 'InviteAccountToOrganization') || ($.eventName = 'LeaveOrganization') || ($.eventName = 'MoveAccount') || ($.eventName = 'RemoveAccountFromOrganization') || ($.eventName = 'UpdatePolicy') || ($.eventName = 'UpdateOrganizationalUnit')) }' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'org_changes_metric' --metric-transformations metricName='org_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventSource = organizations.amazonaws.com) && (($.eventName = 'AcceptHandshake') || ($.eventName = 'AttachPolicy') || ($.eventName = 'CreateAccount') || ($.eventName = 'CreateOrganizationalUnit') || ($.eventName = 'CreatePolicy') || ($.eventName = 'DeclineHandshake') || ($.eventName = 'DeleteOrganization') || ($.eventName = 'DeleteOrganizationalUnit') || ($.eventName = 'DeletePolicy') || ($.eventName = 'DetachPolicy') || ($.eventName = 'DisablePolicyType') || ($.eventName = 'EnablePolicyType') || ($.eventName = 'InviteAccountToOrganization') || ($.eventName = 'LeaveOrganization') || ($.eventName = 'MoveAccount') || ($.eventName = 'RemoveAccountFromOrganization') || ($.eventName = 'UpdatePolicy') || ($.eventName = 'UpdateOrganizationalUnit')) }' --profile " + profile + " --region " + region + " --output text")
 
 def orgchangesalarm():
     print("Creating alarm for the metric filter to check for AWS organization changes")
@@ -92,7 +92,7 @@ def rootusagealarm():
 
 def routetablechanges():
     print("Creating metric filter to check for route table changes")
-    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'route_table_changes_metric' --metric-transformations metricName='route_table_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-name 'route_table_changes_metric' --metric-transformations metricName='route_table_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }' --profile " + profile + " --region " + region + " --output text")
+    os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'route_table_changes_metric' --metric-transformations metricName='route_table_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }' --profile " + profile + " --region " + region + " --output text")
 
 def routetablechangesalarm():
     print("Creating alarm for the metric filter to check for route table changes")
