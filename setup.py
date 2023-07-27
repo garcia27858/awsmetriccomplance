@@ -7,8 +7,8 @@ def awsconfigchanges():
     os.system("aws logs put-metric-filter --log-group-name '" + ctgn + "' --filter-name 'aws_config_changes_metric' --metric-transformations metricName='aws_config_changes_metric',metricNamespace='CISBenchmark',metricValue=1 --filter-pattern '{ ($.eventSource = config.amazonaws.com) && (($.eventName=StopConfigurationRecorder)||($.eventName=DeleteDeliveryChannel)||($.eventName=PutDeliveryChannel)||($.eventName=PutConfigurationRecorder)) }' --profile " + profile + " --region " + region + " --output text")
 
 def awsconfigchangesalarm():
-   print("Creating alarm for the metric filter to check for AWS Config configuration changes")
-   os.system("aws cloudwatch put-metric-alarm --alarm-name 'aws_config_changes_alarm' --metric-name 'aws_config_changes_metric' --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --namespace 'CISBenchmark' --alarm-actions '" + snsarn + "' --profile " + profile + " --region " + region + " --output text")
+    print("Creating alarm for the metric filter to check for AWS Config configuration changes")
+    os.system("aws cloudwatch put-metric-alarm --alarm-name 'aws_config_changes_alarm' --metric-name 'aws_config_changes_metric' --statistic Sum --period 300 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --evaluation-periods 1 --namespace 'CISBenchmark' --alarm-actions '" + snsarn + "' --profile " + profile + " --region " + region + " --output text")
 
 def apiunauthorizedcall():
     print("Creating metric filter to check for API unauthorized calls")
